@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const multer = require("multer");
 const path = require("path");
+const { uploadOnCloudinary } = require('../utils/cloudinary');
 
 const Blog = require("../models/blog");
 const Comment = require("../models/comment");
@@ -49,11 +50,21 @@ router.post("/comment/:blogId", async (req, res) => {
 
 router.post("/", upload.single("coverImage"), async (req, res) => {
   const { title, body } = req.body;
+
+    const localFilePath = req.file?.path;
+    // console.log(localFilePath)
+    const blogFile = await uploadOnCloudinary(localFilePath);
+    // console.log(blogFile)
+
+    if(!blogFile){
+        throw new Error("Error while upoading blog image on cloudinary");
+    }
+
   const blog = await Blog.create({
     body,
     title,
     createdBy: req.user._id,
-    coverImageURL: `/uploads/${req.file.filename}`,
+    coverImageURL: blogFile?.url,
   });
   return res.redirect(`/blog/${blog._id}`);
 });

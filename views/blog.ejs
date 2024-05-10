@@ -3,7 +3,12 @@
   <head>
     <%- include('./partials/head') %>
     <title>Blog</title>
-  </head>
+<style>
+.sol{
+background-image: repeating-linear-gradient(222deg, rgba(94,94,94, 0.06) 0px, rgba(94,94,94, 0.06) 1px,transparent 1px, transparent 21px,rgba(94,94,94, 0.06) 21px, rgba(94,94,94, 0.06) 22px,transparent 22px, transparent 72px),repeating-linear-gradient(132deg, rgba(94,94,94, 0.06) 0px, rgba(94,94,94, 0.06) 1px,transparent 1px, transparent 21px,rgba(94,94,94, 0.06) 21px, rgba(94,94,94, 0.06) 22px,transparent 22px, transparent 72px),repeating-linear-gradient(267deg, rgba(94,94,94, 0.06) 0px, rgba(94,94,94, 0.06) 1px,transparent 1px, transparent 21px,rgba(94,94,94, 0.06) 21px, rgba(94,94,94, 0.06) 22px,transparent 22px, transparent 72px),linear-gradient(222deg, hsl(275,3%,97%),hsl(275,3%,97%));
+ }
+</style>
+</head>
   <body>
     <%- include('./partials/nav') %>
 
@@ -12,7 +17,7 @@
       <div class="d-flex justify-content-center">
       <img src="<%= blog.coverImageURL %>" height="250px" />
       </div>
-      <pre class="px-4 mt-3 mt-3 bg-dark-subtle "><%= blog.body %></pre>
+      <pre class="px-4 mt-3 mt-3 sol  "><%= blog.body %></pre>
     </div>
   <div class="comments mt-3 ">
     <div class="container mt-4 " >
